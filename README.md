@@ -28,6 +28,8 @@ The goal of this assignment is to practice working with **semi-structured JSON d
 
 ### 4. Vizualisations 
 <img width="915" height="629" alt="image" src="https://github.com/user-attachments/assets/8d10b03c-8a04-4999-a766-2011a3e0b8f1" />
+<img width="1080" height="716" alt="image" src="https://github.com/user-attachments/assets/2ba58591-a758-4f24-a181-7bb5915962d4" />
+
 
 
 
