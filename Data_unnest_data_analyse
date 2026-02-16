@@ -1,0 +1,40 @@
+drop table if exists cars;
+
+create table cars as
+with raw as (
+        select unnest(usedCars) as car
+        from read_json_auto('/Users/Asus/Downloads/usedCars.json', maximum_object_size = 500000000)
+)
+select
+    car.name as title,
+    car.modelDate as car_date,
+    car.brand.name as car_brand,
+    car.fuelType as fuel_type,
+    car.color as color,
+    car.price as price,
+    car.priceCurrency as currency
+from raw;
+
+--analyzing average price for each car brand at particular year
+drop table if exists avg_Price;
+
+create table avg_Price as
+select car_brand,
+       car_date,
+       AVG(price) OVER(partition by car_brand, car_date) AS avg_brand_price
+from cars;
+
+--Let's find out the most expensive color here
+drop table if exists avg_color;
+
+create table avg_color as
+select car_brand,
+       car_date,
+       color,
+       RANK() OVER(partition by color ORDER BY price DESC) AS color_price_rank_from_the_highest
+from cars;
+
+
+
+
+
